@@ -104,19 +104,21 @@ class PowerUp(pygame.sprite.Sprite):
     def __init__(self, x, y, type_):
         super().__init__()
         self.type = type_
-        self.image = pygame.Surface((30, 30))
+        self.image = pygame.Surface((30, 30))  # Create a temporary surface
         self.rect = self.image.get_rect()
         self.rect.center = (x, y)
         self.speed = 3
 
-        # Color power-ups differently
+        # Load shield image for the "shield" power-up
         if self.type == "shield":
-            self.image.fill(GREEN)
+            self.image = pygame.image.load("shield.png")  # Load shield.png image
+            self.image = pygame.transform.scale(self.image, (30, 30))  # Scale to fit
         elif self.type == "triple_shot":
-            self.image.fill(RED)
+            self.image = pygame.image.load("triple_shot.png")  # Load shield.png image
+            self.image = pygame.transform.scale(self.image, (30, 30))  # Scale to fit
         elif self.type == "speed_boost":
-            self.image.fill(BLUE)
-
+            self.image = pygame.image.load("speed_boost.png")  # Load shield.png image
+            self.image = pygame.transform.scale(self.image, (30, 30))  # Scale to fit
     def update(self):
         self.rect.y += self.speed
         if self.rect.top > HEIGHT:
